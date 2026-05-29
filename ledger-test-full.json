@@ -1,0 +1,649 @@
+{
+  "_version": "1.0.0",
+  "_lastSaved": "2026-05-28T12:00:00.000Z",
+  "_exportedAt": "2026-05-28T12:00:00.000Z",
+
+  "settings": {
+    "name": "Test User",
+    "filingStatus": "married",
+    "state": "TX",
+    "theme": "dark"
+  },
+
+  "carLoan": [
+    {
+      "id": "test-car-1",
+      "lender": "Honda Financial",
+      "vehicleName": "2023 Honda CRV",
+      "originalBalance": 32000,
+      "currentBalance": 28500,
+      "interestRate": 5.9,
+      "termMonths": 60,
+      "startDate": "2023-06",
+      "monthlyPayment": 617.49
+    },
+    {
+      "id": "test-car-2",
+      "lender": "Chase Auto",
+      "vehicleName": "2021 Toyota Tacoma",
+      "originalBalance": 42000,
+      "currentBalance": 35200,
+      "interestRate": 3.49,
+      "termMonths": 72,
+      "startDate": "2022-01",
+      "monthlyPayment": 0
+    }
+  ],
+
+  "mortgage": [
+    {
+      "id": "test-mort-1",
+      "lender": "Wells Fargo",
+      "propertyAddress": "123 Main St, Austin TX 78701",
+      "homeValue": 485000,
+      "originalBalance": 388000,
+      "currentBalance": 381240.55,
+      "interestRate": 6.875,
+      "termMonths": 360,
+      "startDate": "2023-03",
+      "monthlyEscrow": 892.50,
+      "monthlyPMI": 0,
+      "extraPayment": 200,
+      "appreciationRate": 3.5
+    },
+    {
+      "id": "test-mort-2",
+      "lender": "Rocket Mortgage",
+      "propertyAddress": "456 Oak Ave, Dallas TX 75201",
+      "homeValue": 310000,
+      "originalBalance": 248000,
+      "currentBalance": 241875.00,
+      "interestRate": 3.25,
+      "termMonths": 360,
+      "startDate": "2020-07",
+      "monthlyEscrow": 640.00,
+      "monthlyPMI": 85.00,
+      "extraPayment": 0,
+      "appreciationRate": 4.0
+    }
+  ],
+
+  "budget": {
+    "incomeStreams": [
+      {
+        "id": "test-inc-1",
+        "name": "Primary Salary",
+        "amount": 3250.00,
+        "frequency": "biweekly"
+      },
+      {
+        "id": "test-inc-2",
+        "name": "Partner Salary",
+        "amount": 2800.00,
+        "frequency": "semimonthly"
+      },
+      {
+        "id": "test-inc-3",
+        "name": "Freelance",
+        "amount": 1200.00,
+        "frequency": "monthly"
+      },
+      {
+        "id": "test-inc-4",
+        "name": "Annual Bonus",
+        "amount": 8500.00,
+        "frequency": "annual"
+      },
+      {
+        "id": "test-inc-5",
+        "name": "Part-Time Tutoring",
+        "amount": 150.00,
+        "frequency": "weekly"
+      }
+    ],
+
+    "groups": [
+      { "id": "test-grp-housing", "name": "Housing" },
+      { "id": "test-grp-food", "name": "Food" },
+      { "id": "test-grp-transport", "name": "Transportation" },
+      { "id": "test-grp-utilities", "name": "Utilities" },
+      { "id": "test-grp-insurance", "name": "Insurance" },
+      { "id": "test-grp-health", "name": "Health & Medical" },
+      { "id": "test-grp-savings", "name": "Savings & Investing" },
+      { "id": "test-grp-personal", "name": "Personal" }
+    ],
+
+    "categories": [
+      { "id": "test-cat-rent",        "name": "Mortgage Payment",     "amount": 2350.00, "frequency": "monthly",   "groupId": "test-grp-housing",   "parentId": null },
+      { "id": "test-cat-homerepair",  "name": "Home Repairs",         "amount": 1800.00, "frequency": "annual",    "groupId": "test-grp-housing",   "parentId": null },
+      { "id": "test-cat-groceries",   "name": "Groceries",            "amount": 650.00,  "frequency": "monthly",   "groupId": "test-grp-food",      "parentId": null },
+      { "id": "test-cat-dining",      "name": "Dining Out",           "amount": 380.00,  "frequency": "monthly",   "groupId": "test-grp-food",      "parentId": null },
+      { "id": "test-cat-coffee",      "name": "Coffee",               "amount": 60.00,   "frequency": "monthly",   "groupId": "test-grp-food",      "parentId": null },
+      { "id": "test-cat-gas",         "name": "Gas",                  "amount": 220.00,  "frequency": "monthly",   "groupId": "test-grp-transport", "parentId": null },
+      { "id": "test-cat-carins",      "name": "Car Insurance",        "amount": 1440.00, "frequency": "6months",   "groupId": "test-grp-insurance", "parentId": null },
+      { "id": "test-cat-electric",    "name": "Electric",             "amount": 145.00,  "frequency": "monthly",   "groupId": "test-grp-utilities", "parentId": null },
+      { "id": "test-cat-internet",    "name": "Internet",             "amount": 89.99,   "frequency": "monthly",   "groupId": "test-grp-utilities", "parentId": null },
+      { "id": "test-cat-water",       "name": "Water & Sewer",        "amount": 210.00,  "frequency": "quarterly", "groupId": "test-grp-utilities", "parentId": null },
+      { "id": "test-cat-phone",       "name": "Cell Phone",           "amount": 135.00,  "frequency": "monthly",   "groupId": "test-grp-utilities", "parentId": null },
+      { "id": "test-cat-healthins",   "name": "Health Insurance",     "amount": 480.00,  "frequency": "monthly",   "groupId": "test-grp-insurance", "parentId": null },
+      { "id": "test-cat-dental",      "name": "Dental & Vision",      "amount": 75.00,   "frequency": "monthly",   "groupId": "test-grp-insurance", "parentId": null },
+      { "id": "test-cat-doctor",      "name": "Doctor Visits",        "amount": 120.00,  "frequency": "2months",   "groupId": "test-grp-health",    "parentId": null },
+      { "id": "test-cat-gym",         "name": "Gym",                  "amount": 45.00,   "frequency": "monthly",   "groupId": "test-grp-health",    "parentId": null },
+      { "id": "test-cat-roth",        "name": "Roth IRA",             "amount": 583.33,  "frequency": "monthly",   "groupId": "test-grp-savings",   "parentId": null },
+      { "id": "test-cat-emergency",   "name": "Emergency Fund",       "amount": 500.00,  "frequency": "monthly",   "groupId": "test-grp-savings",   "parentId": null },
+      { "id": "test-cat-haircut",     "name": "Haircut",              "amount": 35.00,   "frequency": "monthly",   "groupId": "test-grp-personal",  "parentId": null },
+      { "id": "test-cat-clothing",    "name": "Clothing",             "amount": 800.00,  "frequency": "annual",    "groupId": "test-grp-personal",  "parentId": null },
+      { "id": "test-cat-vacation",    "name": "Vacation",             "amount": 3600.00, "frequency": "annual",    "groupId": "test-grp-personal",  "parentId": null },
+      { "id": "test-cat-groceries-sub", "name": "Organic / Specialty", "amount": 120.00, "frequency": "monthly",  "groupId": null, "parentId": "test-cat-groceries" }
+    ],
+
+    "subscriptions": [
+      {
+        "id": "test-sub-1",
+        "name": "Netflix",
+        "amount": 22.99,
+        "frequency": "monthly",
+        "dueDay": 5,
+        "dueDate": null
+      },
+      {
+        "id": "test-sub-2",
+        "name": "Spotify",
+        "amount": 10.99,
+        "frequency": "monthly",
+        "dueDay": 12,
+        "dueDate": null
+      },
+      {
+        "id": "test-sub-3",
+        "name": "YouTube Premium",
+        "amount": 13.99,
+        "frequency": "monthly",
+        "dueDay": 18,
+        "dueDate": null
+      },
+      {
+        "id": "test-sub-4",
+        "name": "iCloud 200GB",
+        "amount": 2.99,
+        "frequency": "monthly",
+        "dueDay": 22,
+        "dueDate": null
+      },
+      {
+        "id": "test-sub-5",
+        "name": "Amazon Prime",
+        "amount": 139.00,
+        "frequency": "annual",
+        "dueDay": null,
+        "dueDate": "Feb 14"
+      },
+      {
+        "id": "test-sub-6",
+        "name": "Adobe Creative Cloud",
+        "amount": 599.88,
+        "frequency": "annual",
+        "dueDay": null,
+        "dueDate": "Sep 3"
+      },
+      {
+        "id": "test-sub-7",
+        "name": "Xbox Game Pass",
+        "amount": 14.99,
+        "frequency": "monthly",
+        "dueDay": null,
+        "dueDate": null
+      },
+      {
+        "id": "test-sub-8",
+        "name": "Car Registration",
+        "amount": 248.00,
+        "frequency": "semiannual",
+        "dueDay": null,
+        "dueDate": "Jan 15"
+      },
+      {
+        "id": "test-sub-9",
+        "name": "Costco Membership",
+        "amount": 65.00,
+        "frequency": "semiannual",
+        "dueDay": null,
+        "dueDate": "Mar 20"
+      }
+    ]
+  },
+
+  "investments": {
+    "holdings": [
+      {
+        "id": "test-inv-pretax-1",
+        "name": "401(k) — Fidelity 500 Index",
+        "ticker": "FXAIX",
+        "institution": "Fidelity",
+        "type": "pretax",
+        "amountContributed": 48000.00,
+        "currentValue": 61250.80,
+        "expectedReturn": 8.0,
+        "payFrequency": "biweekly",
+        "monthlyContrib": 750.00
+      },
+      {
+        "id": "test-inv-taxfree-1",
+        "name": "Roth IRA — Vanguard Target 2055",
+        "ticker": "VFFVX",
+        "institution": "Vanguard",
+        "type": "taxfree",
+        "amountContributed": 22000.00,
+        "currentValue": 27840.15,
+        "expectedReturn": 8.0,
+        "payFrequency": "monthly",
+        "monthlyContrib": 583.33
+      },
+      {
+        "id": "test-inv-taxfree-2",
+        "name": "Roth 401(k) — Schwab S&P 500 Index",
+        "ticker": "SWPPX",
+        "institution": "Schwab",
+        "type": "taxfree",
+        "amountContributed": 15500.00,
+        "currentValue": 18920.44,
+        "expectedReturn": 8.5,
+        "payFrequency": "biweekly",
+        "monthlyContrib": 416.67
+      },
+      {
+        "id": "test-inv-taxable-1",
+        "name": "Brokerage — Fidelity Total Market",
+        "ticker": "FSKAX",
+        "institution": "Fidelity",
+        "type": "taxable",
+        "amountContributed": 9500.00,
+        "currentValue": 11340.22,
+        "expectedReturn": 7.5,
+        "payFrequency": "monthly",
+        "monthlyContrib": 250.00
+      },
+      {
+        "id": "test-inv-hsa-1",
+        "name": "HSA — Optum Bank (FXAIX)",
+        "ticker": "FXAIX",
+        "institution": "Optum",
+        "type": "hsa",
+        "amountContributed": 7200.00,
+        "currentValue": 9105.67,
+        "expectedReturn": 8.0,
+        "payFrequency": "biweekly",
+        "monthlyContrib": 325.00
+      },
+      {
+        "id": "test-inv-annuity-1",
+        "name": "Variable Annuity — Nationwide",
+        "ticker": "",
+        "institution": "Nationwide",
+        "type": "annuity",
+        "amountContributed": 30000.00,
+        "currentValue": 34200.00,
+        "expectedReturn": 4.5,
+        "payFrequency": "monthly",
+        "monthlyContrib": 0
+      },
+      {
+        "id": "test-inv-other-1",
+        "name": "529 College Savings — Fidelity",
+        "ticker": "FDKLX",
+        "institution": "Fidelity",
+        "type": "other",
+        "amountContributed": 4800.00,
+        "currentValue": 5210.90,
+        "expectedReturn": 7.0,
+        "payFrequency": "monthly",
+        "monthlyContrib": 200.00
+      }
+    ],
+    "monthlyContribution": 2525.00
+  },
+
+  "tax": {
+    "filingYear": 2025,
+    "grossIncome": 128000,
+    "filingStatus": "married",
+    "state": "TX",
+    "localTaxRate": 0,
+    "deductions": {
+      "type": "itemized",
+      "amount": 31500
+    },
+    "additionalIncome": {
+      "capitalGains": 2400,
+      "selfEmployment": 14400,
+      "other": 500
+    }
+  },
+
+  "paycheck": {
+    "useTaxPage": true,
+    "paychecks": [
+      {
+        "id": "test-pc-1",
+        "name": "Primary Job",
+        "grossPaycheck": 3846.15,
+        "payFrequency": "biweekly",
+        "filingStatus": "married",
+        "state": "",
+        "localRate": 0,
+        "medical": 150.00,
+        "dental": 15.00,
+        "vision": 8.00,
+        "hsa": 96.15,
+        "contrib401k": 300.00,
+        "pretaxCustom": [],
+        "roth401k": 200.00,
+        "rothIRA": 0,
+        "lifeInsurance": 25.00,
+        "postTaxCustom": [],
+        "deposits": [
+          {
+            "id": "dep-1",
+            "account": "Chase Checking",
+            "type": "remainder"
+          },
+          {
+            "id": "dep-2",
+            "account": "Ally HYSA",
+            "type": "fixed",
+            "amount": 500
+          },
+          {
+            "id": "dep-3",
+            "account": "Fidelity Brokerage",
+            "type": "percent",
+            "percent": 5
+          }
+        ]
+      },
+      {
+        "id": "test-pc-2",
+        "name": "Partner Job",
+        "grossPaycheck": 2800.00,
+        "payFrequency": "semimonthly",
+        "filingStatus": "married",
+        "state": "",
+        "localRate": 0,
+        "medical": 0,
+        "dental": 0,
+        "vision": 0,
+        "hsa": 0,
+        "contrib401k": 140.00,
+        "pretaxCustom": [],
+        "roth401k": 0,
+        "rothIRA": 0,
+        "lifeInsurance": 12.00,
+        "postTaxCustom": [],
+        "deposits": [
+          {
+            "id": "dep-4",
+            "account": "Joint Checking",
+            "type": "remainder"
+          }
+        ]
+      }
+    ]
+  },
+
+  "networth": {
+    "snapshots": [
+      {
+        "id": "test-nw-1",
+        "date": "2024-01-01",
+        "label": "Start of 2024",
+        "cashValue": 22500,
+        "homeValue": 420000,
+        "investmentValue": 95000,
+        "otherAssets": 18000,
+        "otherAssetsLabel": "Vehicles",
+        "mortgageBalance": 398000,
+        "carBalance": 68000,
+        "otherLiabilities": 4200,
+        "totalAssets": 555500,
+        "totalLiabilities": 470200,
+        "netWorth": 85300
+      },
+      {
+        "id": "test-nw-2",
+        "date": "2024-07-01",
+        "label": "Mid-Year Check-in",
+        "cashValue": 28400,
+        "homeValue": 432000,
+        "investmentValue": 118500,
+        "otherAssets": 21000,
+        "otherAssetsLabel": "Vehicles",
+        "mortgageBalance": 389500,
+        "carBalance": 61200,
+        "otherLiabilities": 2100,
+        "totalAssets": 599900,
+        "totalLiabilities": 452800,
+        "netWorth": 147100
+      },
+      {
+        "id": "test-nw-3",
+        "date": "2025-01-01",
+        "label": "Start of 2025",
+        "cashValue": 34800,
+        "homeValue": 445000,
+        "investmentValue": 148200,
+        "otherAssets": 24500,
+        "otherAssetsLabel": "Vehicles",
+        "mortgageBalance": 381000,
+        "carBalance": 56800,
+        "otherLiabilities": 0,
+        "totalAssets": 652500,
+        "totalLiabilities": 437800,
+        "netWorth": 214700
+      },
+      {
+        "id": "test-nw-4",
+        "date": "2026-01-01",
+        "label": "Start of 2026",
+        "cashValue": 41200,
+        "homeValue": 458500,
+        "investmentValue": 183500,
+        "otherAssets": 28000,
+        "otherAssetsLabel": "Vehicles",
+        "mortgageBalance": 371000,
+        "carBalance": 49500,
+        "otherLiabilities": 0,
+        "totalAssets": 711200,
+        "totalLiabilities": 420500,
+        "netWorth": 290700
+      }
+    ]
+  },
+
+  "bankAccounts": [
+    {
+      "id": "test-bank-1",
+      "name": "Chase Checking",
+      "type": "checking",
+      "institution": "Chase",
+      "balance": 8420.55
+    },
+    {
+      "id": "test-bank-2",
+      "name": "Ally HYSA",
+      "type": "savings",
+      "institution": "Ally",
+      "balance": 22300.00
+    },
+    {
+      "id": "test-bank-3",
+      "name": "Joint Checking",
+      "type": "checking",
+      "institution": "Chase",
+      "balance": 5840.10
+    },
+    {
+      "id": "test-bank-4",
+      "name": "HSA — Optum",
+      "type": "hsa",
+      "institution": "Optum",
+      "balance": 4200.00
+    },
+    {
+      "id": "test-bank-5",
+      "name": "Emergency Cash",
+      "type": "savings",
+      "institution": "Marcus by GS",
+      "balance": 15000.00
+    }
+  ],
+
+  "creditCards": [
+    {
+      "id": "test-cc-1",
+      "name": "Chase Sapphire Preferred",
+      "issuer": "Chase",
+      "last4": "4521",
+      "balance": 2340.85,
+      "creditLimit": 15000,
+      "apr": 21.99,
+      "minPayment": 47.00,
+      "statementDay": 8
+    },
+    {
+      "id": "test-cc-2",
+      "name": "Citi Double Cash",
+      "issuer": "Citi",
+      "last4": "7890",
+      "balance": 880.20,
+      "creditLimit": 8000,
+      "apr": 19.74,
+      "minPayment": 25.00,
+      "statementDay": 17
+    },
+    {
+      "id": "test-cc-3",
+      "name": "Amex Blue Cash",
+      "issuer": "American Express",
+      "last4": "3316",
+      "balance": 0,
+      "creditLimit": 12000,
+      "apr": 18.49,
+      "minPayment": null,
+      "statementDay": 25
+    },
+    {
+      "id": "test-cc-4",
+      "name": "Discover It",
+      "issuer": "Discover",
+      "last4": "6643",
+      "balance": 415.00,
+      "creditLimit": 5500,
+      "apr": 24.99,
+      "minPayment": 25.00,
+      "statementDay": 3
+    }
+  ],
+
+  "savingsGoals": [
+    {
+      "id": "test-sav-1",
+      "name": "Emergency Fund",
+      "emoji": "🛡️",
+      "targetAmount": 30000,
+      "currentAmount": 15000,
+      "monthlyContribution": 500,
+      "targetDate": "2026-12",
+      "color": "#6BBF8E",
+      "notes": "6 months of expenses",
+      "createdAt": "2024-01"
+    },
+    {
+      "id": "test-sav-2",
+      "name": "House Down Payment",
+      "emoji": "🏠",
+      "targetAmount": 80000,
+      "currentAmount": 22300,
+      "monthlyContribution": 1200,
+      "targetDate": "2028-06",
+      "color": "#6B9FBF",
+      "notes": "20% down on ~$400k home",
+      "createdAt": "2024-03"
+    },
+    {
+      "id": "test-sav-3",
+      "name": "New Car Fund",
+      "emoji": "🚗",
+      "targetAmount": 15000,
+      "currentAmount": 4800,
+      "monthlyContribution": 350,
+      "targetDate": "2027-01",
+      "color": "#BF9F6B",
+      "notes": "Replace the Tacoma when the loan is done",
+      "createdAt": "2025-01"
+    },
+    {
+      "id": "test-sav-4",
+      "name": "Europe Vacation",
+      "emoji": "✈️",
+      "targetAmount": 8000,
+      "currentAmount": 8000,
+      "monthlyContribution": 0,
+      "targetDate": "2026-07",
+      "color": "#BF6B6B",
+      "notes": "Trip is fully funded!",
+      "createdAt": "2025-06"
+    }
+  ],
+
+  "debtPlanner": {
+    "method": "avalanche",
+    "extraPayment": 300,
+    "customDebts": [
+      {
+        "id": "test-debt-cc-1",
+        "name": "Chase Sapphire",
+        "type": "credit-card",
+        "balance": 4850.00,
+        "rate": 24.99,
+        "minPayment": 97.00
+      },
+      {
+        "id": "test-debt-cc-2",
+        "name": "Citi Double Cash",
+        "type": "credit-card",
+        "balance": 1920.50,
+        "rate": 21.49,
+        "minPayment": 39.00
+      },
+      {
+        "id": "test-debt-pl-1",
+        "name": "SoFi Personal Loan",
+        "type": "personal-loan",
+        "balance": 12000.00,
+        "rate": 11.99,
+        "minPayment": 267.00
+      },
+      {
+        "id": "test-debt-sl-1",
+        "name": "Federal Student Loan",
+        "type": "student-loan",
+        "balance": 18400.00,
+        "rate": 5.05,
+        "minPayment": 195.00
+      },
+      {
+        "id": "test-debt-other-1",
+        "name": "Medical Bill — Austin Regional",
+        "type": "other",
+        "balance": 3200.00,
+        "rate": 0,
+        "minPayment": 150.00
+      }
+    ]
+  },
+
+  "calendar": {
+    "incomeSchedules": {},
+    "billDays": {}
+  }
+}

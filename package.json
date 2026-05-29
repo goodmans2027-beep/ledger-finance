@@ -1,0 +1,52 @@
+{
+  "name": "ledger",
+  "version": "0.1.0",
+  "description": "Personal Finance Dashboard",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.0.0",
+    "electron": "^31.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "build": {
+    "appId": "com.ledger.finance",
+    "productName": "Ledger",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "index.html",
+      "main.js",
+      "preload.js",
+      "css/**",
+      "js/**",
+      "fonts/**",
+      "assets/**",
+      "!js/vendor/.gitkeep",
+      "!dist/**"
+    ],
+    "publish": {
+      "provider": "github",
+      "owner": "goodmans2027-beep",
+      "repo": "ledger-finance"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Ledger"
+    }
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.3"
+  }
+}

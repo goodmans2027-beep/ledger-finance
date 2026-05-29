@@ -1,0 +1,450 @@
+{
+  "_version": "1.0.0",
+  "_lastSaved": null,
+  "settings": {
+    "name": "",
+    "filingStatus": "single",
+    "state": "",
+    "theme": "dark"
+  },
+  "carLoan": [
+    {
+      "id": "default",
+      "lender": "",
+      "vehicleName": "Vehicle 1",
+      "originalBalance": 0,
+      "currentBalance": 0,
+      "interestRate": 0,
+      "termMonths": 0,
+      "startDate": null,
+      "monthlyPayment": 0
+    }
+  ],
+  "mortgage": [
+    {
+      "id": "default",
+      "lender": "",
+      "propertyAddress": "",
+      "homeValue": 0,
+      "originalBalance": 0,
+      "currentBalance": 0,
+      "interestRate": 0,
+      "termMonths": 360,
+      "startDate": null,
+      "monthlyEscrow": 0,
+      "monthlyPMI": 0,
+      "extraPayment": 0,
+      "appreciationRate": 0
+    }
+  ],
+  "budget": {
+    "incomeStreams": [],
+    "categories": [
+      {
+        "id": "grp-food",
+        "name": "Food",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-transport",
+        "name": "Transportation",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-housing",
+        "name": "Housing",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-utilities",
+        "name": "Utilities",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-insurance",
+        "name": "Insurance",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-health",
+        "name": "Medical & Health",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-subscriptions",
+        "name": "Subscriptions",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-entertainment",
+        "name": "Entertainment",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-savings",
+        "name": "Savings & Goals",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-debt",
+        "name": "Debt Payments",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-personal",
+        "name": "Personal & Other",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "grp-giving",
+        "name": "Giving",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": null
+      },
+      {
+        "id": "cat-groceries",
+        "name": "Groceries",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-food"
+      },
+      {
+        "id": "cat-restaurants",
+        "name": "Restaurants & Dining",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-food"
+      },
+      {
+        "id": "cat-coffee",
+        "name": "Coffee & Snacks",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-food"
+      },
+      {
+        "id": "cat-gas",
+        "name": "Gas & Fuel",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-transport"
+      },
+      {
+        "id": "cat-public-transit",
+        "name": "Public Transit",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-transport"
+      },
+      {
+        "id": "cat-parking",
+        "name": "Parking & Tolls",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-transport"
+      },
+      {
+        "id": "cat-rideshare",
+        "name": "Uber / Lyft",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-transport"
+      },
+      {
+        "id": "cat-car-maintenance",
+        "name": "Car Maintenance",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-transport"
+      },
+      {
+        "id": "cat-rent",
+        "name": "Rent / Mortgage",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-housing"
+      },
+      {
+        "id": "cat-home-repairs",
+        "name": "Home Repairs & Maintenance",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-housing"
+      },
+      {
+        "id": "cat-furniture",
+        "name": "Furniture & Decor",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-housing"
+      },
+      {
+        "id": "cat-electric",
+        "name": "Electricity",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-utilities"
+      },
+      {
+        "id": "cat-water",
+        "name": "Water & Sewer",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-utilities"
+      },
+      {
+        "id": "cat-internet",
+        "name": "Internet / Phone",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-utilities"
+      },
+      {
+        "id": "cat-gas-heating",
+        "name": "Gas (Heating)",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-utilities"
+      },
+      {
+        "id": "cat-health-insurance",
+        "name": "Health Insurance",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-insurance"
+      },
+      {
+        "id": "cat-car-insurance",
+        "name": "Car Insurance",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-insurance"
+      },
+      {
+        "id": "cat-home-insurance",
+        "name": "Home Insurance",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-insurance"
+      },
+      {
+        "id": "cat-life-insurance",
+        "name": "Life Insurance",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-insurance"
+      },
+      {
+        "id": "cat-medical",
+        "name": "Medical & Doctor",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-health"
+      },
+      {
+        "id": "cat-pharmacy",
+        "name": "Pharmacy & Medications",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-health"
+      },
+      {
+        "id": "cat-gym",
+        "name": "Gym & Fitness",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-health"
+      },
+      {
+        "id": "cat-streaming",
+        "name": "Streaming Services",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-subscriptions"
+      },
+      {
+        "id": "cat-software",
+        "name": "Software & Apps",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-subscriptions"
+      },
+      {
+        "id": "cat-memberships",
+        "name": "Memberships & Clubs",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-subscriptions"
+      },
+      {
+        "id": "cat-movies",
+        "name": "Movies & Events",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-entertainment"
+      },
+      {
+        "id": "cat-hobbies",
+        "name": "Hobbies & Interests",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-entertainment"
+      },
+      {
+        "id": "cat-travel",
+        "name": "Travel & Vacation",
+        "amount": 0,
+        "frequency": "annual",
+        "parentId": "grp-entertainment"
+      },
+      {
+        "id": "cat-emergency",
+        "name": "Emergency Fund",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-savings"
+      },
+      {
+        "id": "cat-general-savings",
+        "name": "General Savings",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-savings"
+      },
+      {
+        "id": "cat-investment",
+        "name": "Investment Contributions",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-savings"
+      },
+      {
+        "id": "cat-credit-card",
+        "name": "Credit Card Payments",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-debt"
+      },
+      {
+        "id": "cat-student-loans",
+        "name": "Student Loan Payments",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-debt"
+      },
+      {
+        "id": "cat-personal-loan",
+        "name": "Personal Loan Payments",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-debt"
+      },
+      {
+        "id": "cat-clothing",
+        "name": "Clothing & Accessories",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-personal"
+      },
+      {
+        "id": "cat-haircut",
+        "name": "Haircut & Personal Care",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-personal"
+      },
+      {
+        "id": "cat-gifts",
+        "name": "Gifts & Celebrations",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-personal"
+      },
+      {
+        "id": "cat-other",
+        "name": "Miscellaneous",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-personal"
+      },
+      {
+        "id": "cat-charity",
+        "name": "Charitable Donations",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-giving"
+      },
+      {
+        "id": "cat-family-support",
+        "name": "Family Support",
+        "amount": 0,
+        "frequency": "monthly",
+        "parentId": "grp-giving"
+      }
+    ],
+    "subscriptions": []
+  },
+  "investments": {
+    "holdings": [],
+    "monthlyContribution": 0
+  },
+  "tax": {
+    "filingYear": 2024,
+    "grossIncome": 0,
+    "filingStatus": "single",
+    "state": "",
+    "localTaxRate": 0,
+    "deductions": {
+      "type": "standard",
+      "amount": 0
+    },
+    "additionalIncome": {
+      "capitalGains": 0,
+      "selfEmployment": 0,
+      "other": 0
+    }
+  },
+  "networth": {
+    "snapshots": []
+  },
+  "debtPlanner": {
+    "method": "avalanche",
+    "extraPayment": 0,
+    "customDebts": [],
+    "excludeMortgage": false
+  },
+  "creditCards": [],
+  "savingsGoals": [],
+  "retirement": {
+    "currentAge": null,
+    "retireAge": 65,
+    "withdrawalRate": 4,
+    "growthRateOverride": null,
+    "expensesOverride": null,
+    "contribOverride": null
+  },
+  "bankAccounts": []
+}

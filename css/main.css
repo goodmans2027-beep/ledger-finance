@@ -1,0 +1,195 @@
+/**
+ * main.css — Base Styles, Variables & Layout
+ * --------------------------------------------
+ * CSS custom properties for both themes.
+ * Global resets, typography, sidebar, and page layout.
+ * Theme switching done by toggling [data-theme="dark"|"light"] on <html>.
+ *
+ * Color palette:
+ *   Primary accent : #D97757  (Claude orange)
+ *   Accent light   : #E8A87C
+ *   Dark surface   : #1E1E1E / #2A2A2A / #333333
+ *   Light surface  : #FAF9F7 / #F0EDE8 / #FFFFFF
+ *   Text dark      : #F0ECE4
+ *   Text light     : #1A1A1A
+ */
+
+/* ─── FONTS ─── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400;500&display=swap');
+
+/* ─── GLOBAL RESET ─── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ─── DARK THEME (default) ─── */
+:root {
+    --accent: #D97757;
+    --accent-light: #E8A87C;
+    --accent-dim: rgba(217, 119, 87, 0.15);
+
+    --bg: #1A1A1A;
+    --surface: #242424;
+    --surface2: #2E2E2E;
+    --border: #3A3A3A;
+
+    --text: #F0ECE4;
+    --text-muted: #8A8580;
+    --text-faint: #555250;
+
+    --green: #6BBF8E;
+    --red: #D96B6B;
+    --blue: #6B9FD9;
+
+    --sidebar-width: 240px;
+    --sidebar-collapsed-width: 56px;
+    --radius: 10px;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+}
+
+/* ─── LIGHT THEME ─── */
+[data-theme="light"] {
+    --bg: #FAF9F7;
+    --surface: #FFFFFF;
+    --surface2: #F0EDE8;
+    --border: #E0DBD5;
+
+    --text: #1A1A1A;
+    --text-muted: #6B6560;
+    --text-faint: #A09890;
+}
+
+/* ─── BASE ─── */
+body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ─── LAYOUT ─── */
+#sidebar {
+    width: var(--sidebar-width);
+    min-height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 0 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+    transition: width 0.22s ease;
+}
+
+#main {
+    margin-left: var(--sidebar-width);
+    flex: 1;
+    padding: 36px 64px 36px 40px;
+    min-height: 100vh;
+    overflow-y: auto;
+    max-width: calc(100vw - var(--sidebar-width));
+    box-sizing: border-box;
+    transition: margin-left 0.22s ease, max-width 0.22s ease;
+}
+
+/* ─── SIDEBAR COLLAPSE — base transitions ─── */
+
+/* Text elements: fade + shrink so they don't hard-clip */
+.nav-text,
+.nav-label,
+.sidebar-logo-text,
+.sidebar-version {
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 200px;
+    opacity: 1;
+    transition: max-width 0.2s ease, opacity 0.14s ease;
+}
+
+/* Nav items slide their padding so the icon drifts to center */
+.nav-item {
+    transition: padding 0.22s ease, gap 0.22s ease;
+}
+
+/* Push toggle to the far right of the logo row in expanded state */
+#sidebarToggle {
+    margin-left: auto;
+}
+
+/* Toggle chevron rotates */
+#sidebarToggle svg {
+    transition: transform 0.22s ease;
+}
+
+/* ─── SIDEBAR COLLAPSED ─── */
+body.sidebar-collapsed #sidebar {
+    width: var(--sidebar-collapsed-width);
+}
+
+body.sidebar-collapsed #main {
+    margin-left: var(--sidebar-collapsed-width);
+    max-width: calc(100vw - var(--sidebar-collapsed-width));
+}
+
+body.sidebar-collapsed .nav-text,
+body.sidebar-collapsed .nav-label,
+body.sidebar-collapsed .sidebar-logo-text,
+body.sidebar-collapsed .sidebar-version {
+    max-width: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Nav-group keeps its 12px horizontal padding so nothing snaps.
+   Nav-item content area in collapsed = 56 - 24 = 32px.
+   Center a 20px icon inside 32px → 6px each side. */
+body.sidebar-collapsed .nav-item {
+    padding: 9px 6px;
+    gap: 0;
+}
+
+/* Stack ◈ and toggle vertically so both stay visible in 56px */
+body.sidebar-collapsed .sidebar-logo {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 0 16px;
+}
+
+body.sidebar-collapsed #sidebarToggle {
+    margin-left: 0;
+}
+
+body.sidebar-collapsed .sidebar-footer {
+    padding: 10px 0;
+    align-items: center;
+}
+
+/* Collapse the invisible nav-label height so icons are evenly spaced */
+body.sidebar-collapsed .nav-label {
+    padding: 0;
+    line-height: 0;
+}
+
+body.sidebar-collapsed .nav-group {
+    margin-bottom: 0;
+}
+
+body.sidebar-collapsed #sidebarToggle svg {
+    transform: rotate(180deg);
+}

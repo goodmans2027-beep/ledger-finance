@@ -1,0 +1,1232 @@
+/**
+ * components.css — UI Components
+ * --------------------------------
+ * Reusable component styles. Depends on variables defined in main.css.
+ * Every page pulls from these classes — build once, use everywhere.
+ */
+
+/* ─────────────────────────────────────────
+   PAGES — show/hide logic driven by app.js
+   ───────────────────────────────────────── */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* ─────────────────────────────────────────
+   PAGE HEADER — top of every page
+   ───────────────────────────────────────── */
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-header h2 {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.page-header p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-top: 4px;
+}
+
+/* ─────────────────────────────────────────
+   SIDEBAR LOGO — top of sidebar
+   ───────────────────────────────────────── */
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 22px 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+}
+
+.sidebar-logo .logo-icon {
+    font-size: 1.8rem;
+    color: var(--accent);
+}
+
+.sidebar-logo h1 {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.sidebar-logo p {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-top: 3px;
+}
+
+/* ─────────────────────────────────────────
+   NAV GROUP — groups nav items with a label
+   ───────────────────────────────────────── */
+.nav-group {
+    padding: 0 12px;
+    margin-bottom: 8px;
+}
+
+.nav-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    padding: 4px 10px 6px;
+}
+
+/* ─────────────────────────────────────────
+   NAV ITEMS — sidebar navigation links
+   active class applied by app.js navigate()
+   ───────────────────────────────────────── */
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    transition: all 0.18s ease;
+    user-select: none;
+    margin-bottom: 2px;
+}
+
+.nav-item:hover {
+    background: var(--surface2);
+    color: var(--text);
+}
+
+.nav-item.active {
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-weight: 500;
+}
+
+.nav-icon {
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.nav-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+}
+
+/* ─────────────────────────────────────────
+   SIDEBAR FOOTER — version stamp at bottom of sidebar
+   ───────────────────────────────────────── */
+.sidebar-footer {
+    margin-top: auto;
+    padding: 12px 22px 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    background: var(--surface);
+}
+
+.export-bar {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+}
+
+.export-btn {
+    flex: 1;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 6px;
+    padding: 7px 4px;
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.18s;
+}
+
+.export-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.sidebar-version {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-faint);
+    text-align: center;
+}
+
+/* ─────────────────────────────────────────
+   THEME TOGGLE — dark/light switch button
+   logic handled by theme.js
+   ───────────────────────────────────────── */
+.theme-toggle {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 6px;
+    padding: 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.18s;
+    width: 32px;
+    height: 32px;
+    font-family: var(--font-mono);
+    text-align: center;
+}
+
+.theme-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+/* ─────────────────────────────────────────
+   CARDS — primary surface container
+   ───────────────────────────────────────── */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin-bottom: 16px;
+}
+
+.card-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.card-value {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.card-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* ─────────────────────────────────────────
+   SUMMARY CARDS — large number highlights
+   used on dashboard and net worth pages
+   ───────────────────────────────────────── */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.summary-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+}
+
+.summary-card .label {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.summary-card .value {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.summary-card .sub {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* ─────────────────────────────────────────
+   VALUE COLORS — applied to .value elements
+   ───────────────────────────────────────── */
+.value-green {
+    color: var(--green);
+}
+
+.value-red {
+    color: var(--red);
+}
+
+.value-accent {
+    color: var(--accent);
+}
+
+.value-muted {
+    color: var(--text-faint);
+}
+
+/* ─────────────────────────────────────────
+   GRID LAYOUTS — responsive column grids
+   ───────────────────────────────────────── */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+/* ─────────────────────────────────────────
+   SECTION HEADER — title row above a section
+   ───────────────────────────────────────── */
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.section-title {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+/* ─────────────────────────────────────────
+   BUTTONS — base + variants
+   ───────────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    border: none;
+    transition: all 0.18s ease;
+}
+
+/* Filled orange — primary actions */
+.btn-primary {
+    background: var(--accent);
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: var(--accent-light);
+}
+
+/* Outlined — secondary actions */
+.btn-ghost {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+}
+
+.btn-ghost:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Red tint — destructive actions */
+.btn-danger {
+    background: rgba(217, 107, 107, 0.15);
+    border: 1px solid rgba(217, 107, 107, 0.3);
+    color: var(--red);
+}
+
+.btn-danger:hover {
+    background: rgba(217, 107, 107, 0.25);
+}
+
+/* ─────────────────────────────────────────
+   FORM ELEMENTS — labels, inputs, selects
+   ───────────────────────────────────────── */
+.form-group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    padding: 10px 13px;
+    font-size: 0.88rem;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: border 0.18s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent);
+}
+
+select option {
+    background: var(--surface2);
+}
+
+/* Explicit class aliases for form elements — same styles as the global
+   label / input / select selectors, used in JS-rendered forms */
+.form-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    padding: 10px 13px;
+    font-size: 0.88rem;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: border 0.18s;
+}
+
+.form-input:focus,
+.form-select:focus {
+    border-color: var(--accent);
+}
+
+.form-hint {
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    margin-top: 4px;
+}
+
+/* Two and three column form rows */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-row-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+}
+
+/* ─────────────────────────────────────────
+   PROGRESS BAR — horizontal fill indicator
+   used on loan payoff and budget pages
+   ───────────────────────────────────────── */
+.progress-bar-wrap {
+    background: var(--surface2);
+    border-radius: 99px;
+    height: 6px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 99px;
+    background: var(--accent);
+    transition: width 0.4s ease;
+}
+
+/* ─────────────────────────────────────────
+   BADGES — inline status pills
+   ───────────────────────────────────────── */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+}
+
+.badge-green {
+    background: rgba(107, 191, 142, 0.15);
+    color: var(--green);
+}
+
+.badge-red {
+    background: rgba(217, 107, 107, 0.15);
+    color: var(--red);
+}
+
+.badge-blue {
+    background: rgba(107, 159, 217, 0.15);
+    color: var(--blue);
+}
+
+.badge-magenta {
+    background: rgba(217, 87, 168, 0.15);
+    color: #9471B1;
+}
+
+.badge-accent {
+    background: var(--accent-dim);
+    color: var(--accent);
+}
+
+.badge-muted {
+    background: var(--surface2);
+    color: var(--text-muted);
+}
+
+/* ─────────────────────────────────────────
+   TABLES — data display
+   ───────────────────────────────────────── */
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.87rem;
+}
+
+th {
+    text-align: left;
+    padding: 10px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+}
+
+td {
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover td {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* ─────────────────────────────────────────
+   CHART CONTAINER — wraps Chart.js canvas
+   ───────────────────────────────────────── */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 280px;
+}
+
+/* ─────────────────────────────────────────
+   TOAST — bottom right notification
+   shown/hidden by adding .show class via JS
+   ───────────────────────────────────────── */
+#toast {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 12px 18px;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    color: var(--text);
+    z-index: 999;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.25s ease;
+    pointer-events: none;
+}
+
+#toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ─────────────────────────────────────────
+   SCROLLBAR — custom thin scrollbar
+   ───────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 99px;
+}
+
+/* ─────────────────────────────────────────
+   CAR LOAN — stat rows in payoff progress card
+   ───────────────────────────────────────── */
+.car-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+}
+
+.car-stat-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.car-stat-label {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+}
+
+.car-stat-value {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+/* ─────────────────────────────────────────
+   TABS — used on car loan and future pages
+   ───────────────────────────────────────── */
+.tab-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    border-bottom: none;
+    transition: all 0.18s ease;
+    position: relative;
+    bottom: -1px;
+    background: transparent;
+    font-family: var(--font-sans);
+}
+
+.tab:hover {
+    color: var(--text);
+    background: var(--surface2);
+}
+
+.tab.active {
+    color: var(--accent);
+    background: var(--surface);
+    border-color: var(--border);
+    border-bottom-color: var(--surface);
+}
+
+.tab-close {
+    font-size: 0.7rem;
+    color: var(--text-faint);
+    padding: 1px 3px;
+    border-radius: 3px;
+    line-height: 1;
+    transition: all 0.15s;
+}
+
+.tab-close:hover {
+    color: var(--red);
+    background: rgba(217, 107, 107, 0.15);
+}
+
+.tab-add {
+    padding: 8px 12px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-faint);
+    border: 1px dashed var(--border);
+    border-bottom: none;
+    background: transparent;
+    transition: all 0.18s;
+    position: relative;
+    bottom: -1px;
+    font-family: var(--font-sans);
+}
+
+.tab-add:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.tab-add:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ─────────────────────────────────────────
+   DRAG AND DROP — holdings table reordering
+   ───────────────────────────────────────── */
+.drag-handle {
+    cursor: grab;
+    color: var(--text-faint);
+    font-size: 1.1rem;
+    user-select: none;
+    padding: 11px 6px 11px 10px !important;
+    width: 28px;
+    transition: color 0.15s;
+}
+
+.drag-handle:hover {
+    color: var(--text-muted);
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+tr.dragging {
+    opacity: 0.35;
+}
+
+tr.drag-over td {
+    background: var(--accent-dim) !important;
+    border-top: 2px solid var(--accent);
+}
+
+/* ─────────────────────────────────────────
+   ROW ACTION BUTTONS — edit (✎) and delete (✕)
+   ───────────────────────────────────────── */
+.delete-row-btn,
+.edit-row-btn {
+    background: none;
+    border: none;
+    color: var(--text-faint);
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 3px 7px;
+    border-radius: 4px;
+    transition: all 0.15s;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.delete-row-btn:hover {
+    color: var(--red);
+    background: rgba(217, 107, 107, 0.1);
+}
+
+.edit-row-btn:hover {
+    color: var(--accent);
+    background: var(--accent-dim);
+}
+
+/* ─────────────────────────────────────────
+   MODAL — full screen overlay with content box
+   ───────────────────────────────────────── */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.open {
+    display: flex;
+}
+
+.modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 30px;
+    width: 620px;
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: fadeIn 0.2s ease;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.modal-title {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+.modal-close:hover {
+    color: var(--text);
+    background: var(--surface2);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 4px;
+}
+
+/* Centered empty-state placeholder used across pages */
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-muted);
+}
+
+.empty-state-icon {
+    width: 32px;
+    height: 32px;
+    opacity: 0.35;
+    display: block;
+    margin: 0 auto 14px;
+}
+
+/* ─────────────────────────────────────────
+   BUDGET CALENDAR
+   ───────────────────────────────────────── */
+.cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.cal-day-label {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-faint);
+    padding: 6px 0;
+}
+
+.cal-day {
+    min-height: 70px;
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 6px;
+    position: relative;
+    border: 1px solid transparent;
+    transition: border 0.15s;
+}
+
+.cal-day.today {
+    border-color: var(--accent);
+}
+
+.cal-day.empty {
+    background: transparent;
+    border: none;
+}
+
+.cal-day-number {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.cal-day.today .cal-day-number {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.cal-sub-chip {
+    display: block;
+    background: var(--accent-dim);
+    color: var(--accent);
+    border-radius: 4px;
+    padding: 2px 5px;
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: default;
+}
+
+.cal-sub-chip.annual {
+    background: rgba(107, 159, 217, 0.15);
+    color: var(--blue);
+}
+
+/* ─────────────────────────────────────────
+   FOO — Financial Order of Operations
+   ───────────────────────────────────────── */
+.foo-steps { display: flex; flex-direction: column; }
+
+.foo-step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.15s;
+}
+
+.foo-step-focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent);
+}
+
+.foo-step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.1s;
+}
+
+.foo-step-header:hover { background: var(--hover); }
+
+.foo-circle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.88rem;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.foo-circle-done { background: var(--green);    color: #fff; }
+.foo-circle-now  { background: var(--accent);   color: #fff; }
+.foo-circle-idle { background: var(--surface2); color: var(--text-muted); }
+.foo-circle-skip { background: none; color: var(--text-faint); border: 2px dashed var(--border); }
+
+/* ─────────────────────────────────────────
+   INSURANCE PAGE
+   ───────────────────────────────────────── */
+.ins-group-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+    margin-bottom: 10px;
+}
+
+.ins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 12px;
+}
+
+.ins-card { padding: 14px 16px; margin-bottom: 0; }
+
+.ins-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ins-card-name     { font-weight: 600; font-size: 0.95rem; line-height: 1.3; }
+.ins-card-provider { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; margin-bottom: 10px; }
+.ins-card-notes    { font-size: 0.77rem; color: var(--text-faint); margin-top: 8px; font-style: italic; }
+
+.ins-card-stats {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.ins-stat-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+}
+
+.ins-stat-value {
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    color: var(--text);
+    margin-top: 1px;
+}
+
+.foo-step-meta  { flex: 1; min-width: 0; }
+
+.foo-step-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    line-height: 1.4;
+}
+
+.foo-step-sub    { font-size: 0.82rem; color: var(--text-muted); margin-top: 2px; }
+.foo-step-detect { font-size: 0.78rem; color: var(--text-faint); margin-top: 4px; font-family: var(--font-mono); }
+
+.foo-step-body {
+    padding: 4px 16px 16px 64px;
+    border-top: 1px solid var(--border);
+}
+
+.foo-guidance {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin: 10px 0 14px;
+}
+
+.foo-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ─────────────────────────────────────────
+   INLINE EDITABLE TABLE CELLS
+   ───────────────────────────────────────── */
+.inline-edit {
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.87rem;
+    width: 90px;
+    padding: 3px 7px;
+    outline: none;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.15s;
+}
+
+.inline-edit:hover {
+    border-color: var(--text-muted);
+}
+
+.inline-edit:focus {
+    border-color: var(--accent);
+    border-style: solid;
+}
+
+.inline-select {
+    background: transparent;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    padding: 3px 5px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.15s;
+}
+
+.inline-select:hover {
+    border-color: var(--text-muted);
+}
+
+.inline-select:focus {
+    border-color: var(--accent);
+    border-style: solid;
+}
+
+/* ─────────────────────────────────────────
+   RETIREMENT PROJECTOR — assumption label helpers
+   ───────────────────────────────────────── */
+.ret-label {
+    font-size: 0.72rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ret-auto {
+    font-size: 0.65rem;
+    color: var(--text-faint);
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: var(--font-mono);
+    font-weight: 400;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─────────────────────────────────────────
+   GLOBAL SETTINGS BUTTON + PANEL
+   fixed gear icon in the top-right corner
+   ───────────────────────────────────────── */
+#global-settings-btn {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 300;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.18s, border-color 0.18s, background 0.18s;
+}
+
+#global-settings-btn:hover,
+#global-settings-btn.active {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--surface);
+}
+
+#global-settings-panel {
+    position: fixed;
+    top: 54px;
+    right: 16px;
+    z-index: 299;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    min-width: 230px;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+    display: none;
+    animation: fadeIn 0.15s ease;
+}
+
+.gsettings-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-faint);
+    margin-bottom: 10px;
+}
+
+.gsettings-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+}
+
+.gsettings-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 14px 0;
+}

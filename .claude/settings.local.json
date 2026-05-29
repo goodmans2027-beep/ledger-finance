@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\kamer\\\\OneDrive\\\\Documents\\\\Personal\\\\Projects\\\\Coding Projects\\\\finance_dashboard\\\\js\" -Recurse -Filter \"*.js\")",
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(Select-String \"canvas|sharp|svg|jimp|pngjs\")",
+      "PowerShell(Get-ChildItem \"c:\\\\Users\\\\kamer\\\\OneDrive\\\\Documents\\\\Personal\\\\Projects\\\\Coding Projects\\\\finance_dashboard\\\\node_modules\" -Directory | Where-Object { $_.Name -match \"canvas|sharp|svg|jimp|pngjs\" } | Select-Object Name)"
+    ]
+  }
+}

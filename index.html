@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ledger — Personal Finance Dashboard</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- Fonts (local — offline-safe) -->
+  <link rel="stylesheet" href="css/fonts.css">
+
+  <!-- Chart.js (local) -->
+  <script src="js/vendor/chart.min.js"></script>
+
+  <!-- jsPDF (local, for PDF export) -->
+  <script src="js/vendor/jspdf.min.js"></script>
+
+  <!-- Lucide icons (local) -->
+  <script src="js/vendor/lucide.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SIDEBAR                             -->
+  <!-- ═══════════════════════════════════ -->
+  <nav id="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">◈</span>
+      <div class="sidebar-logo-text">
+        <h1>Ledger</h1>
+        <p>Personal Finance</p>
+      </div>
+      <button id="sidebarToggle" title="Collapse sidebar"
+        style="background:none; border:none; color:var(--text-muted); cursor:pointer; padding:4px; display:flex; align-items:center; flex-shrink:0;">
+        <i data-lucide="chevrons-left"></i>
+      </button>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Overview</div>
+      <div class="nav-item active" data-page="dashboard" title="Dashboard">
+        <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span><span class="nav-text"> Dashboard</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Liabilities</div>
+      <div class="nav-item" data-page="car-loan" title="Car Loan">
+        <span class="nav-icon"><i data-lucide="car"></i></span><span class="nav-text"> Car Loan</span>
+      </div>
+      <div class="nav-item" data-page="mortgage" title="Mortgage">
+        <span class="nav-icon"><i data-lucide="home"></i></span><span class="nav-text"> Mortgage</span>
+      </div>
+      <div class="nav-item" data-page="credit-cards" title="Credit Cards">
+        <span class="nav-icon"><i data-lucide="credit-card"></i></span><span class="nav-text"> Credit Cards</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Planning</div>
+      <div class="nav-item" data-page="budget" title="Budget">
+        <span class="nav-icon"><i data-lucide="wallet"></i></span><span class="nav-text"> Budget</span>
+      </div>
+      <div class="nav-item" data-page="savings" title="Savings Goals">
+        <span class="nav-icon"><i data-lucide="piggy-bank"></i></span><span class="nav-text"> Savings Goals</span>
+      </div>
+      <div class="nav-item" data-page="insurance" title="Insurance">
+        <span class="nav-icon"><i data-lucide="shield-check"></i></span><span class="nav-text"> Insurance</span>
+      </div>
+      <div class="nav-item" data-page="debt" title="Debt Payoff Planner">
+        <span class="nav-icon"><i data-lucide="target"></i></span><span class="nav-text"> Debt Planner</span>
+      </div>
+      <div class="nav-item" data-page="investments" title="Investments">
+        <span class="nav-icon"><i data-lucide="trending-up"></i></span><span class="nav-text"> Investments</span>
+      </div>
+      <div class="nav-item" data-page="retirement" title="Retirement Projector">
+        <span class="nav-icon"><i data-lucide="landmark"></i></span><span class="nav-text"> Retirement</span>
+      </div>
+      <div class="nav-item" data-page="tax" title="Tax Calculator">
+        <span class="nav-icon"><i data-lucide="receipt"></i></span><span class="nav-text"> Tax Calculator</span>
+      </div>
+      <div class="nav-item" data-page="paycheck" title="Paycheck Breakdown">
+        <span class="nav-icon"><i data-lucide="banknote"></i></span><span class="nav-text"> Paycheck</span>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-label">Summary</div>
+      <div class="nav-item" data-page="calendar" title="Financial Calendar">
+        <span class="nav-icon"><i data-lucide="calendar-days"></i></span><span class="nav-text"> Calendar</span>
+      </div>
+      <div class="nav-item" data-page="networth" title="Net Worth">
+        <span class="nav-icon"><i data-lucide="bar-chart-2"></i></span><span class="nav-text"> Net Worth</span>
+      </div>
+      <div class="nav-item" data-page="foo" title="Financial Order of Operations">
+        <span class="nav-icon"><i data-lucide="list-ordered"></i></span><span class="nav-text"> FOO</span>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-version">v0.1.0</div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- MAIN CONTENT AREA                   -->
+  <!-- ═══════════════════════════════════ -->
+  <main id="main">
+
+    <!-- Each page div is shown/hidden by app.js -->
+
+    <div class="page active" id="page-dashboard">
+      <!-- Rendered by dashboard.js -->
+    </div>
+
+    <div class="page" id="page-car-loan">
+
+      <div class="page-header">
+        <h2>Car Loan</h2>
+        <p>Track your auto loans, payoff timelines, and amortization schedules</p>
+      </div>
+      <!-- ── VEHICLE TABS ── -->
+      <div class="tab-bar" id="car-tab-bar">
+        <!-- Rendered by CarLoan.renderTabs() -->
+      </div>
+
+      <!-- ── SUMMARY CARDS ── -->
+      <div class="summary-grid" id="car-summary">
+        <div class="summary-card">
+          <div class="label">Monthly Payment</div>
+          <div class="value value-accent" id="car-monthly-payment">$0.00</div>
+          <div class="sub">principal + interest</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Remaining Balance</div>
+          <div class="value value-red" id="car-remaining-balance">$0.00</div>
+          <div class="sub">as of today</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Total Interest</div>
+          <div class="value value-red" id="car-total-interest">$0.00</div>
+          <div class="sub">over life of loan</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Payoff Date</div>
+          <div class="value value-green" id="car-payoff-date">—</div>
+          <div class="sub">estimated</div>
+        </div>
+      </div>
+
+      <!-- ── INPUT FORM + PROGRESS ── -->
+      <div class="grid-2">
+
+        <!-- Left: form -->
+        <div class="card">
+          <div class="card-title">Loan Details</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Lender Name</label>
+              <input type="text" id="car-lender" placeholder="e.g. Chase Auto">
+            </div>
+            <div class="form-group">
+              <label>Vehicle</label>
+              <input type="text" id="car-vehicle" placeholder="e.g. 2022 Toyota Camry">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Original Loan Amount</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="car-original-balance" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Current Balance</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="car-current-balance" placeholder="0.00">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Interest Rate (%)</label>
+              <input type="number" id="car-interest-rate" placeholder="e.g. 4.5" min="0" step="0.01">
+            </div>
+            <div class="form-group">
+              <label>Loan Term (months)</label>
+              <input type="number" id="car-term" placeholder="e.g. 60" min="1" step="1">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Start Date</label>
+              <input type="month" id="car-start-date">
+            </div>
+            <div class="form-group">
+              <label>Monthly Payment (optional)</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="car-payment-override"
+                placeholder="leave blank to calculate">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <button class="btn btn-primary" onclick="CarLoan.save()">Save & Calculate</button>
+            <button class="btn btn-ghost" onclick="CarLoan.reset()">Reset</button>
+          </div>
+        </div>
+
+        <!-- Right: payoff progress -->
+        <div class="card">
+          <div class="card-title">Payoff Progress</div>
+          <div id="car-progress-section">
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+              <span style="font-size: 0.82rem; color: var(--text-muted);">Paid off</span>
+              <span style="font-family: var(--font-mono); font-size: 0.82rem;" id="car-progress-pct">0%</span>
+            </div>
+            <div class="progress-bar-wrap" style="height: 10px;">
+              <div class="progress-bar" id="car-progress-bar" style="width: 0%;"></div>
+            </div>
+
+            <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 14px;">
+              <div class="car-stat-row">
+                <span class="car-stat-label">Amount Paid</span>
+                <span class="car-stat-value" id="car-amount-paid">$0.00</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">Interest Paid to Date</span>
+                <span class="car-stat-value value-red" id="car-interest-paid">$0.00</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">Principal Paid</span>
+                <span class="car-stat-value value-green" id="car-principal-paid">$0.00</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">Remaining Term</span>
+                <span class="car-stat-value" id="car-remaining-term">— months</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">Next Payment</span>
+                <span class="car-stat-value value-accent" id="car-next-payment">—</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── AMORTIZATION CHART ── -->
+      <div class="card" style="margin-top: 8px;">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Amortization Over Time</span>
+          <div style="display: flex; gap: 16px; font-size: 0.75rem;">
+            <span style="display:flex; align-items:center; gap:5px;">
+              <span
+                style="width:10px; height:10px; border-radius:2px; background:var(--accent); display:inline-block;"></span>
+              Principal
+            </span>
+            <span style="display:flex; align-items:center; gap:5px;">
+              <span
+                style="width:10px; height:10px; border-radius:2px; background:var(--red); display:inline-block;"></span>
+              Interest
+            </span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="car-amortization-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- ── AMORTIZATION TABLE ── -->
+      <div class="card">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Amortization Schedule</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-ghost" style="font-size:0.78rem; padding: 6px 12px;"
+              onclick="CarLoan.exportCSV()">Export CSV</button>
+            <button class="btn btn-ghost" style="font-size:0.78rem; padding: 6px 12px;"
+              onclick="CarLoan.exportPDF()">Export PDF</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Balance</th>
+              </tr>
+            </thead>
+            <tbody id="car-amortization-table">
+              <tr>
+                <td colspan="6" style="text-align:center; color: var(--text-muted); padding: 32px;">
+                  Enter your loan details above to generate the schedule
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page" id="page-mortgage">
+
+      <div class="page-header">
+        <h2>Mortgage</h2>
+        <p>Track your home loans, equity, and payoff timeline</p>
+      </div>
+
+      <!-- ── PROPERTY TABS ── -->
+      <div class="tab-bar" id="mortgage-tab-bar">
+        <!-- Rendered by Mortgage.renderTabs() -->
+      </div>
+
+      <!-- ── SUMMARY CARDS ── -->
+      <div class="summary-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="summary-card">
+          <div class="label">Monthly Payment</div>
+          <div class="value value-accent" id="mort-monthly-payment">$0.00</div>
+          <div class="sub">principal + interest</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Total Monthly</div>
+          <div class="value value-accent" id="mort-total-monthly">$0.00</div>
+          <div class="sub">incl. escrow + PMI</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Remaining Balance</div>
+          <div class="value value-red" id="mort-remaining-balance">$0.00</div>
+          <div class="sub">as of today</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Total Interest</div>
+          <div class="value value-red" id="mort-total-interest">$0.00</div>
+          <div class="sub">over life of loan</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Home Value</div>
+          <div class="value value-green" id="mort-home-value">$0.00</div>
+          <div class="sub">current estimate</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Current Equity</div>
+          <div class="value value-green" id="mort-equity">$0.00</div>
+          <div class="sub">value minus balance</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">LTV Ratio</div>
+          <div class="value value-accent" id="mort-ltv">0%</div>
+          <div class="sub">loan to value</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Payoff Date</div>
+          <div class="value value-green" id="mort-payoff-date">—</div>
+          <div class="sub">estimated</div>
+        </div>
+      </div>
+
+      <!-- ── INPUT FORM + PROGRESS ── -->
+      <div class="grid-2" style="margin-top: 8px;">
+
+        <!-- Left: form -->
+        <div class="card">
+          <div class="card-title">Loan Details</div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Lender Name</label>
+              <input type="text" id="mort-lender" placeholder="e.g. Wells Fargo">
+            </div>
+            <div class="form-group">
+              <label>Property Address</label>
+              <input type="text" id="mort-address" placeholder="e.g. 123 Main St">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Current Home Value</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="mort-home-value-input" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Original Loan Amount</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="mort-original-balance" placeholder="0.00">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Current Balance</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="mort-current-balance" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Interest Rate (%)</label>
+              <input type="number" id="mort-interest-rate" placeholder="e.g. 6.5" min="0" step="0.01">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Loan Term (months)</label>
+              <input type="number" id="mort-term" placeholder="e.g. 360" min="1" step="1">
+            </div>
+            <div class="form-group">
+              <label>Start Date</label>
+              <input type="month" id="mort-start-date">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Monthly Escrow (tax + insurance)</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="mort-escrow" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Monthly PMI</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="mort-pmi" placeholder="0.00 if none">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Extra Monthly Payment</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="mort-extra-payment" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Home Appreciation Rate (%/yr)</label>
+              <input type="number" id="mort-appreciation" placeholder="e.g. 3.0" min="0" step="0.01">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: 8px;">
+            <button class="btn btn-primary" onclick="Mortgage.save()">Save & Calculate</button>
+            <button class="btn btn-ghost" onclick="Mortgage.reset()">Reset</button>
+          </div>
+        </div>
+
+        <!-- Right: equity + payoff progress -->
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+
+          <!-- Equity progress -->
+          <div class="card">
+            <div class="card-title">Equity Progress</div>
+
+            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+              <span style="font-size: 0.82rem; color: var(--text-muted);">Equity built</span>
+              <span style="font-family: var(--font-mono); font-size: 0.82rem;" id="mort-equity-pct">0%</span>
+            </div>
+            <div class="progress-bar-wrap" style="height: 10px;">
+              <div class="progress-bar" id="mort-equity-bar" style="width: 0%; background: var(--green);"></div>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+              <div class="car-stat-row">
+                <span class="car-stat-label">Principal Paid</span>
+                <span class="car-stat-value value-green" id="mort-principal-paid">$0.00</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">Interest Paid to Date</span>
+                <span class="car-stat-value value-red" id="mort-interest-paid">$0.00</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">Remaining Term</span>
+                <span class="car-stat-value" id="mort-remaining-term">— months</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">Next Payment Due</span>
+                <span class="car-stat-value value-accent" id="mort-next-payment">—</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Extra payment impact -->
+          <div class="card">
+            <div class="card-title">Extra Payment Impact</div>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div class="car-stat-row">
+                <span class="car-stat-label">Months Saved</span>
+                <span class="car-stat-value value-green" id="mort-months-saved">—</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">Interest Saved</span>
+                <span class="car-stat-value value-green" id="mort-interest-saved">—</span>
+              </div>
+              <div class="car-stat-row">
+                <span class="car-stat-label">New Payoff Date</span>
+                <span class="car-stat-value value-accent" id="mort-new-payoff">—</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ── HOME VALUE vs BALANCE CHART ── -->
+      <div class="card" style="margin-top: 8px;">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Home Value vs Loan Balance Over Time</span>
+          <div style="display: flex; gap: 16px; font-size: 0.75rem;">
+            <span style="display:flex; align-items:center; gap:5px;">
+              <span
+                style="width:10px; height:10px; border-radius:2px; background:var(--green); display:inline-block;"></span>
+              Home Value
+            </span>
+            <span style="display:flex; align-items:center; gap:5px;">
+              <span
+                style="width:10px; height:10px; border-radius:2px; background:var(--red); display:inline-block;"></span>
+              Loan Balance
+            </span>
+            <span style="display:flex; align-items:center; gap:5px;">
+              <span
+                style="width:10px; height:10px; border-radius:2px; background:var(--accent); display:inline-block;"></span>
+              Equity
+            </span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="mort-value-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- ── AMORTIZATION CHART ── -->
+      <div class="card">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Amortization Over Time</span>
+          <div style="display: flex; gap: 16px; font-size: 0.75rem;">
+            <span style="display:flex; align-items:center; gap:5px;">
+              <span
+                style="width:10px; height:10px; border-radius:2px; background:var(--accent); display:inline-block;"></span>
+              Principal
+            </span>
+            <span style="display:flex; align-items:center; gap:5px;">
+              <span
+                style="width:10px; height:10px; border-radius:2px; background:var(--red); display:inline-block;"></span>
+              Interest
+            </span>
+          </div>
+        </div>
+        <div class="chart-container">
+          <canvas id="mort-amortization-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- ── AMORTIZATION TABLE ── -->
+      <div class="card">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Amortization Schedule</span>
+          <div style="display: flex; gap: 8px;">
+            <button class="btn btn-ghost" style="font-size:0.78rem; padding: 6px 12px;"
+              onclick="Mortgage.exportCSV()">Export CSV</button>
+            <button class="btn btn-ghost" style="font-size:0.78rem; padding: 6px 12px;"
+              onclick="Mortgage.exportPDF()">Export PDF</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Payment</th>
+                <th>Principal</th>
+                <th>Interest</th>
+                <th>Escrow</th>
+                <th>Balance</th>
+                <th>Home Value</th>
+                <th>Equity</th>
+              </tr>
+            </thead>
+            <tbody id="mort-amortization-table">
+              <tr>
+                <td colspan="9" style="text-align:center; color:var(--text-muted); padding:32px;">
+                  Enter your mortgage details above to generate the schedule
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page" id="page-budget">
+
+      <div class="page-header">
+        <h2>Budget</h2>
+        <p>Plan your income, allocate spending, and track subscriptions</p>
+      </div>
+
+      <!-- ── SUMMARY CARDS ── -->
+      <div class="summary-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom:24px;">
+        <div class="summary-card">
+          <div class="label">Monthly Income</div>
+          <div class="value value-green" id="bud-monthly-income">$0.00</div>
+          <div class="sub">total take-home</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Monthly Expenses</div>
+          <div class="value value-red" id="bud-monthly-expenses">$0.00</div>
+          <div class="sub">all categories + subs</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Monthly to Savings</div>
+          <div class="value" id="bud-monthly-savings">$0.00</div>
+          <div class="sub">income minus expenses</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Savings Rate</div>
+          <div class="value" id="bud-savings-rate">0%</div>
+          <div class="sub">% of income saved</div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:16px;">
+        <div class="summary-card">
+          <div class="label">Yearly Income</div>
+          <div class="value value-green" id="bud-yearly-income">$0.00</div>
+          <div class="sub">annual take-home</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Yearly Expenses</div>
+          <div class="value value-red" id="bud-yearly-expenses">$0.00</div>
+          <div class="sub">annual spending</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Yearly to Savings</div>
+          <div class="value" id="bud-yearly-savings">$0.00</div>
+          <div class="sub">annual savings</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Avg Monthly Savings</div>
+          <div class="value" id="bud-avg-monthly-savings">$0.00</div>
+          <div class="sub">yearly savings ÷ 12</div>
+        </div>
+      </div>
+
+      <!-- ── INCOME STREAMS ── -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Income Streams</span>
+          <button class="btn btn-primary" style="font-size:0.78rem; padding:6px 14px;"
+            onclick="Budget.addIncomeStream()">+ Add Stream</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Amount per Paycheck</th>
+                <th>Frequency</th>
+                <th>Monthly</th>
+                <th>Annual</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="bud-income-table"></tbody>
+            <tfoot id="bud-income-totals"></tfoot>
+          </table>
+        </div>
+
+        <!-- Add income stream inline form -->
+        <div id="bud-income-form"
+          style="display:none; margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" id="bud-inc-name" placeholder="e.g. John's Paycheck">
+            </div>
+            <div class="form-group">
+              <label>Amount per Paycheck</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="bud-inc-amount" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Frequency</label>
+              <select id="bud-inc-frequency">
+                <option value="weekly">Weekly (52x/yr)</option>
+                <option value="biweekly" selected>Bi-Weekly (26x/yr)</option>
+                <option value="semimonthly">Semi-Monthly (24x/yr)</option>
+                <option value="monthly">Monthly (12x/yr)</option>
+                <option value="annual">Annual (1x/yr)</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn btn-primary" onclick="Budget.saveIncomeStream()">Add Stream</button>
+            <button class="btn btn-ghost" onclick="Budget.toggleIncomeForm()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── BUDGET CATEGORIES ── -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Budget Categories</span>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-ghost" style="font-size:0.78rem; padding:6px 14px;" onclick="Budget.addGroup()">+ Add
+              Group</button>
+            <button class="btn btn-primary" style="font-size:0.78rem; padding:6px 14px;"
+              onclick="Budget.addCategory()">+ Add Category</button>
+          </div>
+        </div>
+
+        <!-- Allocation bar -->
+        <div style="margin-bottom:20px;">
+          <div style="display:flex; justify-content:space-between; font-size:0.78rem; margin-bottom:6px;">
+            <span style="color:var(--text-muted);">Allocated</span>
+            <span style="font-family:var(--font-mono);" id="bud-allocated-pct">0% of income</span>
+          </div>
+          <div class="progress-bar-wrap" style="height:8px;">
+            <div class="progress-bar" id="bud-allocated-bar" style="width:0%;"></div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Amount</th>
+                <th>Frequency</th>
+                <th style="width:72px;">Due Day</th>
+                <th>Monthly</th>
+                <th>Annual</th>
+                <th>% of Income</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="bud-categories-table"></tbody>
+            <tfoot id="bud-categories-totals"></tfoot>
+          </table>
+        </div>
+
+        <!-- Add group inline form -->
+        <div id="bud-group-form"
+          style="display:none; margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
+          <div class="form-row" style="max-width:400px;">
+            <div class="form-group">
+              <label>Group Name</label>
+              <input type="text" id="bud-grp-name" placeholder="e.g. Food, Transportation, Entertainment">
+            </div>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn btn-primary" onclick="Budget.saveGroupForm()">Add Group</button>
+            <button class="btn btn-ghost" onclick="Budget.toggleGroupForm()">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Add category inline form -->
+        <div id="bud-cat-form"
+          style="display:none; margin-top:16px; padding-top:16px; border-top:1px solid var(--border);">
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Item Name</label>
+              <input type="text" id="bud-cat-name" placeholder="e.g. Groceries or Coffee">
+            </div>
+            <div class="form-group">
+              <label>Group (Optional)</label>
+              <select id="bud-cat-parent">
+                <option value="">No group</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Amount</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="bud-cat-amount" placeholder="0.00">
+            </div>
+          </div>
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Frequency</label>
+              <select id="bud-cat-frequency">
+                <option value="weekly">Weekly</option>
+                <option value="monthly" selected>Monthly</option>
+                <option value="2months">Every 2 Months</option>
+                <option value="quarterly">Quarterly</option>
+                <option value="6months">Every 6 Months</option>
+                <option value="annual">Annually</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn btn-primary" onclick="Budget.saveCategoryForm()">Add Item</button>
+            <button class="btn btn-ghost" onclick="Budget.toggleCategoryForm()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SUBSCRIPTIONS ── -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Subscriptions</span>
+          <button class="btn btn-primary" style="font-size:0.78rem; padding:6px 14px;"
+            onclick="Budget.toggleSubForm()">+ Add Subscription</button>
+        </div>
+
+        <!-- Add subscription form -->
+        <div id="bud-sub-form"
+          style="display:none; margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid var(--border);">
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" id="bud-sub-name" placeholder="e.g. Netflix">
+            </div>
+            <div class="form-group">
+              <label>Amount</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="bud-sub-amount" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Frequency</label>
+              <select id="bud-sub-frequency" onchange="Budget.toggleSubDueDate()">
+                <option value="monthly">Monthly</option>
+                <option value="semiannual">Semi-Annual (2×/yr)</option>
+                <option value="annual">Annual</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row" style="max-width:66%;">
+            <div class="form-group" id="bud-sub-day-group">
+              <label>Due Day (1-31)</label>
+              <input type="number" id="bud-sub-day" placeholder="e.g. 15" min="1" max="31" step="1">
+            </div>
+            <div class="form-group" id="bud-sub-date-group" style="display:none;">
+              <label>Due Date (Month & Day)</label>
+              <input type="text" id="bud-sub-date" placeholder="e.g. Mar 15">
+            </div>
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn btn-primary" onclick="Budget.saveSubscription()">Add Subscription</button>
+            <button class="btn btn-ghost" onclick="Budget.toggleSubForm()">Cancel</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Frequency</th>
+                <th>Amount</th>
+                <th>Due</th>
+                <th>Monthly Cost</th>
+                <th>Annual Cost</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="bud-sub-table"></tbody>
+            <tfoot id="bud-sub-totals"></tfoot>
+          </table>
+        </div>
+      </div>
+
+
+
+      <!-- ── ALLOCATION BREAKDOWN ── -->
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">Spending Breakdown</div>
+          <div id="bud-breakdown" style="display:flex; flex-direction:column; gap:10px; margin-top:8px;"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Allocation Donut</div>
+          <div style="position:relative; width:200px; height:200px; margin:0 auto;">
+            <canvas id="bud-donut-chart"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page" id="page-credit-cards">
+      <!-- Rendered by credit-cards.js -->
+    </div>
+
+    <div class="page" id="page-savings">
+      <!-- Rendered by savings.js -->
+    </div>
+
+    <div class="page" id="page-debt">
+      <!-- Rendered by debt.js -->
+    </div>
+
+    <div class="page" id="page-investments">
+
+      <div class="page-header">
+        <h2>Investments</h2>
+        <p>Track your portfolio across all account types and project future growth</p>
+      </div>
+
+      <!-- ── SUMMARY CARDS ── -->
+      <div class="summary-grid" style="grid-template-columns: repeat(4, 1fr);">
+        <div class="summary-card">
+          <div class="label">Total Portfolio</div>
+          <div class="value value-green" id="inv-total-value">$0.00</div>
+          <div class="sub">current value</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Total Contributed</div>
+          <div class="value value-accent" id="inv-total-contributed">$0.00</div>
+          <div class="sub">amount invested</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Total Gain / Loss</div>
+          <div class="value" id="inv-total-gain">$0.00</div>
+          <div class="sub">current value vs contributed</div>
+        </div>
+        <div class="summary-card">
+          <div class="label">Blended Return</div>
+          <div class="value value-accent" id="inv-blended-return">0.00%</div>
+          <div class="sub">weighted avg expected return</div>
+        </div>
+      </div>
+
+      <!-- ── BUCKET SUMMARY ── -->
+      <div class="grid-3" style="margin-bottom: 16px;">
+        <div class="card">
+          <div class="card-title">Pre-Tax</div>
+          <div class="card-value" id="inv-pretax-total">$0.00</div>
+          <div class="card-sub">401(k), Traditional IRA, 403(b)</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Tax-Free (Roth)</div>
+          <div class="card-value" id="inv-taxfree-total">$0.00</div>
+          <div class="card-sub">Roth 401(k), Roth IRA</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Taxable / Other</div>
+          <div class="card-value" id="inv-taxable-total">$0.00</div>
+          <div class="card-sub">Brokerage, HSA, Annuity</div>
+        </div>
+      </div>
+
+      <!-- ── CHARTS ROW ── -->
+      <div class="grid-2" style="margin-bottom: 16px;">
+
+        <!-- Allocation donut -->
+        <div class="card">
+          <div class="section-header">
+            <span class="card-title" style="margin:0;">Portfolio Allocation</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:24px;">
+            <div style="position:relative; width:160px; height:160px; flex-shrink:0;">
+              <canvas id="inv-donut-chart"></canvas>
+            </div>
+            <div id="inv-donut-legend" style="flex:1; display:flex; flex-direction:column; gap:8px;"></div>
+          </div>
+        </div>
+
+        <!-- Composition bar -->
+        <div class="card">
+          <div class="section-header">
+            <span class="card-title" style="margin:0;">Portfolio Composition</span>
+          </div>
+          <div id="inv-composition" style="display:flex; flex-direction:column; gap:12px; margin-top:8px;"></div>
+        </div>
+
+      </div>
+
+      <!-- ── ADD HOLDING ── -->
+      <div class="card" style="margin-bottom:16px;">
+        <div class="section-header" style="cursor:pointer; margin-bottom:0;" onclick="Investments.toggleAddForm()">
+          <span class="card-title" style="margin:0;">Add Holding</span>
+          <span id="inv-add-chevron"
+            style="color:var(--text-muted); font-size:0.85rem; transition: transform 0.2s;">▼</span>
+        </div>
+
+        <div id="inv-add-form" style="margin-top:18px;">
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" id="inv-name" placeholder="e.g. Vanguard S&P 500">
+            </div>
+            <div class="form-group">
+              <label>Ticker (optional)</label>
+              <input type="text" id="inv-ticker" placeholder="e.g. VOO" style="text-transform:uppercase;">
+            </div>
+            <div class="form-group">
+              <label>Institution</label>
+              <input type="text" id="inv-institution" placeholder="e.g. Fidelity">
+            </div>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Account Type</label>
+              <select id="inv-type">
+                <option value="pretax">Pre-Tax (401k / Traditional IRA)</option>
+                <option value="taxfree">Tax-Free (Roth 401k / Roth IRA)</option>
+                <option value="taxable">Taxable Brokerage</option>
+                <option value="hsa">HSA</option>
+                <option value="annuity">Annuity</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Amount Contributed</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="inv-contributed" placeholder="0.00">
+            </div>
+            <div class="form-group">
+              <label>Current Value</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="inv-current-value" placeholder="0.00">
+            </div>
+          </div>
+
+          <div class="form-row-3">
+            <div class="form-group">
+              <label>Expected Annual Return (%)</label>
+              <input type="number" id="inv-return-rate" placeholder="e.g. 7.0" min="0" step="0.01">
+            </div>
+            <div class="form-group">
+              <label>Pay Frequency</label>
+              <select id="inv-pay-frequency">
+                <option value="monthly">Monthly</option>
+                <option value="semimonthly">Semi-Monthly (24x/yr)</option>
+                <option value="biweekly" selected>Bi-Weekly (26x/yr)</option>
+                <option value="weekly">Weekly (52x/yr)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Contribution per Paycheck</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="inv-paycheck-contrib" placeholder="0.00"
+                oninput="Investments.syncContribution('paycheck')">
+            </div>
+          </div>
+
+          <div class="form-row" style="max-width:66%;">
+            <div class="form-group">
+              <label>Monthly Contribution (auto-calculated)</label>
+              <input type="text" inputmode="decimal" data-fmt="currency" id="inv-monthly-contrib" placeholder="0.00"
+                oninput="Investments.syncContribution('monthly')">
+            </div>
+            <div class="form-group" style="display:flex; align-items:flex-end;">
+              <button class="btn btn-primary" style="width:100%;" onclick="Investments.addHolding()">
+                + Add Holding
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HOLDINGS TABLE ── -->
+      <div class="card">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Holdings</span>
+          <div style="display:flex; gap:8px;">
+            <button class="btn btn-ghost" style="font-size:0.78rem; padding:6px 12px;"
+              onclick="Investments.exportCSV()">Export CSV</button>
+            <button class="btn btn-ghost" style="font-size:0.78rem; padding:6px 12px;"
+              onclick="Investments.exportPDF()">Export PDF</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width:28px;"></th>
+                <th>Name</th>
+                <th>Ticker</th>
+                <th>Type</th>
+                <th>Contributed</th>
+                <th>Current Value</th>
+                <th>Gain / Loss</th>
+                <th>Return %</th>
+                <th>Frequency</th>
+                <th>Per Paycheck</th>
+                <th>Monthly</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="inv-holdings-table"></tbody>
+            <tfoot id="inv-holdings-totals"></tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── PROJECTION CHART ── -->
+      <div class="card" style="margin-top:16px;">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Portfolio Growth Projection</span>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span style="font-size:0.78rem; color:var(--text-muted);">Years:</span>
+            <select id="inv-projection-years" onchange="Investments.renderProjectionChart()"
+              style="width:auto; padding:4px 8px; font-size:0.78rem;">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30" selected>30</option>
+              <option value="40">40</option>
+            </select>
+          </div>
+        </div>
+        <div class="chart-container" style="height:320px;">
+          <canvas id="inv-projection-chart"></canvas>
+        </div>
+      </div>
+
+      <!-- ── BUCKET PROJECTION CHART ── -->
+      <div class="card" style="margin-top:16px;">
+        <div class="section-header">
+          <span class="card-title" style="margin:0;">Projection by Account Type</span>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <span style="font-size:0.78rem; color:var(--text-muted);">Years:</span>
+            <select id="inv-bucket-years" onchange="Investments.renderBucketChart()"
+              style="width:auto; padding:4px 8px; font-size:0.78rem;">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="30" selected>30</option>
+              <option value="40">40</option>
+            </select>
+          </div>
+        </div>
+        <div class="chart-container" style="height:320px;">
+          <canvas id="inv-bucket-chart"></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="page" id="page-retirement">
+      <!-- Rendered by retirement.js -->
+    </div>
+
+    <div class="page" id="page-tax">
+      <!-- Rendered by tax.js -->
+    </div>
+
+    <div class="page" id="page-paycheck">
+      <!-- Rendered by paycheck.js -->
+    </div>
+
+    <div class="page" id="page-calendar">
+      <!-- Rendered by calendar.js -->
+    </div>
+
+    <div class="page" id="page-networth">
+      <!-- Rendered by networth.js -->
+    </div>
+
+    <div class="page" id="page-foo">
+      <!-- Rendered by foo.js -->
+    </div>
+
+    <div class="page" id="page-insurance">
+      <!-- Rendered by insurance.js -->
+    </div>
+
+  </main>
+
+  <!-- Toast notification -->
+  <div id="toast"></div>
+
+  <!-- Update badge — shown near window controls when an update is downloaded -->
+  <button id="update-badge" title="Update ready! Click to restart." style="display:none;"
+    onclick="if(window.electronAPI)window.electronAPI.installUpdate()">
+    <span class="update-badge-dot"></span>
+    <span class="update-badge-label">Update</span>
+  </button>
+
+
+  <!-- ── INSURANCE EDIT MODAL ── -->
+  <div class="modal-overlay" id="ins-edit-modal" style="display:none;"></div>
+
+  <!-- Global settings button + panel (must be in DOM before app.js runs) -->
+  <button id="global-settings-btn" title="Settings">
+    <i data-lucide="settings-2" style="width:15px;height:15px;"></i>
+  </button>
+  <div id="global-settings-panel">
+    <div class="gsettings-label">Appearance</div>
+    <div class="gsettings-row">
+      <span>Dark / Light Mode</span>
+      <button class="theme-toggle" id="themeToggle" title="Toggle theme"><span id="themeIcon">☀</span></button>
+    </div>
+    <div class="gsettings-divider"></div>
+    <div class="gsettings-label">Data</div>
+    <div style="display:flex; gap:8px; margin-top:4px;">
+      <button class="export-btn" onclick="Export.toJSON()">Export JSON</button>
+      <button class="export-btn" onclick="document.getElementById('importInput').click()">Import JSON</button>
+    </div>
+    <input type="file" id="importInput" accept=".json" style="display:none"
+      onchange="Export.fromJSON(this.files[0]); this.value = '';">
+    <div id="gsettings-app-section" style="display:none;">
+      <div class="gsettings-divider"></div>
+      <div class="gsettings-label">Application</div>
+      <div style="display:flex; gap:8px; margin-top:4px; flex-wrap:wrap;">
+        <button class="export-btn" onclick="window.electronAPI.reload()">Reload</button>
+        <button class="export-btn" onclick="window.electronAPI.toggleFullscreen()">Fullscreen</button>
+        <button class="export-btn" onclick="window.electronAPI.toggleDevTools()">Dev Tools</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ -->
+  <!-- SCRIPTS (order matters)             -->
+  <!-- ═══════════════════════════════════ -->
+  <script src="js/data.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/car-loan.js"></script>
+  <script src="js/mortgage.js"></script>
+  <script src="js/budget.js"></script>
+  <script src="js/credit-cards.js"></script>
+  <script src="js/savings.js"></script>
+  <script src="js/debt.js"></script>
+  <script src="js/investments.js"></script>
+  <script src="js/retirement.js"></script>
+  <script src="js/tax.js"></script>
+  <script src="js/paycheck.js"></script>
+  <script src="js/networth.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/foo.js"></script>
+  <script src="js/insurance.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- ── EDIT HOLDING MODAL ── -->
+  <div class="modal-overlay" id="inv-edit-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="modal-title">Edit Holding</span>
+        <button class="modal-close" onclick="Investments.closeEditModal()">✕</button>
+      </div>
+
+      <input type="hidden" id="inv-edit-id">
+
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="inv-edit-name" placeholder="e.g. Vanguard S&P 500">
+        </div>
+        <div class="form-group">
+          <label>Ticker (optional)</label>
+          <input type="text" id="inv-edit-ticker" placeholder="e.g. VOO" style="text-transform:uppercase;">
+        </div>
+        <div class="form-group">
+          <label>Institution</label>
+          <input type="text" id="inv-edit-institution" placeholder="e.g. Fidelity">
+        </div>
+      </div>
+
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>Account Type</label>
+          <select id="inv-edit-type">
+            <option value="pretax">Pre-Tax (401k / Traditional IRA)</option>
+            <option value="taxfree">Tax-Free (Roth 401k / Roth IRA)</option>
+            <option value="taxable">Taxable Brokerage</option>
+            <option value="hsa">HSA</option>
+            <option value="annuity">Annuity</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Amount Contributed</label>
+          <input type="text" inputmode="decimal" data-fmt="currency" id="inv-edit-contributed" placeholder="0.00">
+        </div>
+        <div class="form-group">
+          <label>Current Value</label>
+          <input type="text" inputmode="decimal" data-fmt="currency" id="inv-edit-current-value" placeholder="0.00">
+        </div>
+      </div>
+
+      <div class="form-row-3">
+        <div class="form-group">
+          <label>Expected Annual Return (%)</label>
+          <input type="number" id="inv-edit-return-rate" placeholder="e.g. 7.0" min="0" step="0.01">
+        </div>
+        <div class="form-group">
+          <label>Pay Frequency</label>
+          <select id="inv-edit-pay-frequency">
+            <option value="monthly">Monthly</option>
+            <option value="semimonthly">Semi-Monthly (24x/yr)</option>
+            <option value="biweekly">Bi-Weekly (26x/yr)</option>
+            <option value="weekly">Weekly (52x/yr)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Contribution per Paycheck</label>
+          <input type="text" inputmode="decimal" data-fmt="currency" id="inv-edit-paycheck-contrib" placeholder="0.00"
+            oninput="Investments.syncEditContribution('paycheck')">
+        </div>
+      </div>
+
+      <div class="form-row" style="max-width:66%;">
+        <div class="form-group">
+          <label>Monthly Contribution</label>
+          <input type="text" inputmode="decimal" data-fmt="currency" id="inv-edit-monthly-contrib" placeholder="0.00"
+            oninput="Investments.syncEditContribution('monthly')">
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:8px;">
+        <button class="btn btn-ghost" onclick="Investments.closeEditModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="Investments.saveEdit()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

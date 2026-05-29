@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm start *)",
+      "PowerShell(cd \"c:\\\\Users\\\\kamer\\\\OneDrive\\\\Documents\\\\Personal\\\\Projects\\\\Coding Projects\\\\finance_dashboard\"; $p = Start-Process -FilePath \".\\\\node_modules\\\\.bin\\\\electron.cmd\" -ArgumentList \".\" -PassThru -WindowStyle Normal; Start-Sleep -Seconds 4; if \\($p.HasExited\\) { Write-Host \"Exited with: $\\($p.ExitCode\\)\" } else { Write-Host \"Running OK, PID: $\\($p.Id\\)\" })",
+      "PowerShell(cd \"c:\\\\Users\\\\kamer\\\\OneDrive\\\\Documents\\\\Personal\\\\Projects\\\\Coding Projects\\\\finance_dashboard\"; $p = Start-Process -FilePath \".\\\\node_modules\\\\.bin\\\\electron.cmd\" -ArgumentList \".\" -PassThru; Start-Sleep -Seconds 5; if \\($p.HasExited\\) { Write-Host \"Crashed: $\\($p.ExitCode\\)\" } else { Write-Host \"Running OK, PID $\\($p.Id\\)\"; $p.Kill\\(\\) })",
+      "PowerShell(cd \"c:\\\\Users\\\\kamer\\\\OneDrive\\\\Documents\\\\Personal\\\\Projects\\\\Coding Projects\\\\finance_dashboard\"; $p = Start-Process -FilePath \"node_modules\\\\electron\\\\dist\\\\electron.exe\" -ArgumentList \".\" -PassThru; Start-Sleep -Seconds 5; if \\($p.HasExited\\) { Write-Host \"Crashed: $\\($p.ExitCode\\)\" } else { Write-Host \"Running OK, PID $\\($p.Id\\)\"; $p.Kill\\(\\) })"
+    ]
+  }
+}

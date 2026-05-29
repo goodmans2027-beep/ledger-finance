@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Launch Electron",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd",
+      "args": ["."],
+      "outputCapture": "std",
+      "env": {
+        "ELECTRON_ENABLE_LOGGING": "1"
+      }
+    }
+  ]
+}

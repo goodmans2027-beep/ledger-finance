@@ -1,0 +1,205 @@
+{
+    "_version": "1.0.0",
+    "_lastSaved": "2026-05-27T00:00:00.000Z",
+    "_exportedAt": "2026-05-27T00:00:00.000Z",
+    "settings": {
+        "name": "Test Import",
+        "filingStatus": "single",
+        "state": "CA",
+        "theme": "dark"
+    },
+    "carLoan": [
+        {
+            "id": "car-1",
+            "lender": "Auto Finance Co.",
+            "vehicleName": "2024 Sedan",
+            "originalBalance": 28000,
+            "currentBalance": 21450,
+            "interestRate": 4.25,
+            "termMonths": 60,
+            "startDate": "2024-01",
+            "monthlyPayment": 517.32
+        }
+    ],
+    "mortgage": [
+        {
+            "id": "mortgage-1",
+            "lender": "Community Bank",
+            "propertyAddress": "789 Maple Dr, San Diego CA 92101",
+            "homeValue": 625000,
+            "originalBalance": 500000,
+            "currentBalance": 472800,
+            "interestRate": 3.75,
+            "termMonths": 360,
+            "startDate": "2022-03",
+            "monthlyEscrow": 450,
+            "monthlyPMI": 0,
+            "extraPayment": 150,
+            "appreciationRate": 3.0
+        }
+    ],
+    "budget": {
+        "incomeStreams": [
+            {
+                "id": "income-1",
+                "name": "Salary",
+                "amount": 6800,
+                "frequency": "monthly"
+            },
+            {
+                "id": "income-2",
+                "name": "Side Gig",
+                "amount": 600,
+                "frequency": "monthly"
+            }
+        ],
+        "categories": [
+            {
+                "id": "cat-housing",
+                "name": "Mortgage",
+                "amount": 2650,
+                "frequency": "monthly",
+                "parentId": "grp-housing"
+            },
+            {
+                "id": "cat-groceries",
+                "name": "Groceries",
+                "amount": 450,
+                "frequency": "monthly",
+                "parentId": "grp-food"
+            },
+            {
+                "id": "cat-utilities",
+                "name": "Utilities",
+                "amount": 320,
+                "frequency": "monthly",
+                "parentId": "grp-utilities"
+            },
+            {
+                "id": "cat-savings",
+                "name": "Emergency Fund",
+                "amount": 600,
+                "frequency": "monthly",
+                "parentId": "grp-savings"
+            }
+        ],
+        "subscriptions": [
+            {
+                "id": "sub-1",
+                "name": "Netflix",
+                "amount": 15.99,
+                "frequency": "monthly",
+                "dueDay": 5,
+                "dueDate": null
+            },
+            {
+                "id": "sub-2",
+                "name": "Spotify",
+                "amount": 10.99,
+                "frequency": "monthly",
+                "dueDay": 12,
+                "dueDate": null
+            }
+        ]
+    },
+    "investments": {
+        "holdings": [
+            {
+                "id": "inv-1",
+                "name": "Vanguard Total Market",
+                "ticker": "VTI",
+                "institution": "Vanguard",
+                "type": "taxable",
+                "amountContributed": 12000,
+                "currentValue": 13750,
+                "expectedReturn": 7.0,
+                "payFrequency": "monthly",
+                "monthlyContrib": 300
+            }
+        ],
+        "monthlyContribution": 300
+    },
+    "tax": {
+        "filingYear": 2025,
+        "grossIncome": 82000,
+        "filingStatus": "single",
+        "state": "CA",
+        "localTaxRate": 0,
+        "deductions": {
+            "type": "standard",
+            "amount": 13850
+        },
+        "additionalIncome": {
+            "capitalGains": 0,
+            "selfEmployment": 0,
+            "other": 0
+        }
+    },
+    "networth": {
+        "snapshots": [
+            {
+                "id": "nw-1",
+                "date": "2026-05-01",
+                "value": 132450
+            }
+        ]
+    },
+    "debtPlanner": {
+        "method": "avalanche",
+        "extraPayment": 100,
+        "customDebts": [
+            {
+                "id": "debt-cc-1",
+                "name": "Visa Card",
+                "balance": 4200,
+                "interestRate": 18.99,
+                "minimumPayment": 120,
+                "source": "custom"
+            }
+        ],
+        "excludeMortgage": false
+    },
+    "creditCards": [
+        {
+            "id": "cc-1",
+            "name": "Chase Sapphire",
+            "issuer": "Chase",
+            "last4": "1234",
+            "balance": 5400,
+            "creditLimit": 12000,
+            "apr": 19.99,
+            "minPayment": 108,
+            "statementDay": 22
+        }
+    ],
+    "savingsGoals": [
+        {
+            "id": "sav-1",
+            "name": "Emergency Fund",
+            "emoji": "🛟",
+            "targetAmount": 12000,
+            "currentAmount": 5400,
+            "monthlyContribution": 600,
+            "targetDate": "2027-12",
+            "notes": "6 months of expenses",
+            "color": "#6BBF8E"
+        }
+    ],
+    "retirement": {
+        "currentAge": 35,
+        "retireAge": 65,
+        "withdrawalRate": 4,
+        "growthRateOverride": 7.5,
+        "expensesOverride": 4500,
+        "contribOverride": 1200
+    },
+    "bankAccounts": [
+        {
+            "id": "acct-1",
+            "name": "Chase Checking",
+            "type": "checking",
+            "institution": "Chase",
+            "balance": 8200
+        }
+    ]
+}
